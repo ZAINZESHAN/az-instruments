@@ -7,7 +7,7 @@ const footerLinks = navItems.filter((item) => item.href !== "/downloads");
 
 export function Footer() {
   return (
-    <footer className="bg-navy text-white">
+    <footer className="bg-navy text-white max-[599px]:text-center max-[599px]:[&_.flex]:justify-center">
       <Container className="grid gap-10 py-14 sm:py-16 md:grid-cols-12">
         <div className="md:col-span-5">
           <p className="text-2xl font-bold tracking-tight">{site.name}</p>

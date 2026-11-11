@@ -52,7 +52,7 @@ export function ProductsExperience() {
           />
         </div>
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full max-w-[52rem] py-12 pr-8 pl-[max(1.5rem,calc((100vw-100rem)/2+1.5rem))] sm:pl-[max(2rem,calc((100vw-100rem)/2+2rem))] lg:py-0 lg:pl-[max(2.5rem,calc((100vw-100rem)/2+2.5rem))]">
+          <div className="w-full max-w-[52rem] px-6 py-12 min-[600px]:pr-8 min-[600px]:pl-[max(1.5rem,calc((100vw-100rem)/2+1.5rem))] sm:pl-[max(2rem,calc((100vw-100rem)/2+2rem))] lg:py-0 lg:pl-[max(2.5rem,calc((100vw-100rem)/2+2.5rem))]">
             <p className="text-xs font-semibold tracking-[0.18em] text-white/80 uppercase sm:text-sm">
               Product catalogue
             </p>

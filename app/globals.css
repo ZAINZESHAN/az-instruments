@@ -67,20 +67,6 @@ html {
   scroll-behavior: smooth;
 }
 
-@media (max-width: 639px) {
-  h1,
-  h2 {
-    text-align: center;
-  }
-
-  p:has(+ h1),
-  p:has(+ h2),
-  h1 + p,
-  h2 + p {
-    text-align: center;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

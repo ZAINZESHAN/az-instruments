@@ -48,7 +48,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Skip to content
         </a>
         <Header />
-        <main id="main" className="flex-1">
+        <main
+          id="main"
+          className="flex-1 max-[599px]:text-center max-[599px]:[&_.flex]:justify-center max-[599px]:[&_input]:text-left max-[599px]:[&_textarea]:text-left max-[599px]:[&_select]:text-left"
+        >
           {children}
         </main>
         <Footer />
