@@ -123,37 +123,32 @@ export function ContactPageContent() {
         </Container>
       </section>
 
-      <section id="product-enquiry" className="border-t border-line bg-ice">
-        <Container className="py-16 lg:py-24">
-          <div className="mx-auto max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.16em] text-blue uppercase">Product enquiry</p>
-            <h2 className="mt-3 type-section text-navy">
-              Tell us what you need
-            </h2>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-navy/75">
-              Use this form for a named instrument, a bulk order, OEM work, or a custom requirement.
-              Share the category, quantity, and any specification you already have.
-            </p>
-            <div className="mt-8 rounded-[1.75rem] border border-line bg-white p-6 sm:p-8">
-              <ProductInquiryForm />
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      <section id="request-quote" className="scroll-mt-28 border-t border-line bg-white">
+      <section className="border-t border-line bg-ice">
         <Container className="py-12 sm:py-16 lg:py-20">
-          <div className="mx-auto max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.16em] text-blue uppercase">Request a quote</p>
-            <h2 className="mt-3 type-section text-navy">Request a quotation</h2>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-navy/75">
-              For international buyers who need a price on a named instrument, a list, or a custom
-              specification. Include the category, quantity, and any requirement you already have.
-            </p>
-            <div className="mt-8 rounded-[1.75rem] border border-line bg-ice/40 p-6 sm:p-8">
-              <Suspense fallback={<p className="text-sm text-navy/70">Loading the quotation form.</p>}>
-                <QuoteInquiryForm />
-              </Suspense>
+          <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-10 xl:gap-14">
+            <div id="product-enquiry" className="scroll-mt-28 min-w-0">
+              <p className="text-xs font-semibold tracking-[0.16em] text-blue uppercase">Product enquiry</p>
+              <h2 className="mt-3 type-section text-navy">Tell us what you need</h2>
+              <p className="mt-4 text-base leading-7 text-navy/75">
+                Use this form for a named instrument, a bulk order, OEM work, or a custom requirement.
+                Share the category, quantity, and any specification you already have.
+              </p>
+              <div className="mt-8 rounded-[1.75rem] border border-line bg-white p-6 sm:p-8">
+                <ProductInquiryForm />
+              </div>
+            </div>
+            <div id="request-quote" className="scroll-mt-28 min-w-0">
+              <p className="text-xs font-semibold tracking-[0.16em] text-blue uppercase">Request a quote</p>
+              <h2 className="mt-3 type-section text-navy">Request a quotation</h2>
+              <p className="mt-4 text-base leading-7 text-navy/75">
+                For international buyers who need a price on a named instrument, a list, or a custom
+                specification. Include the category, quantity, and any requirement you already have.
+              </p>
+              <div className="mt-8 rounded-[1.75rem] border border-line bg-white p-6 sm:p-8">
+                <Suspense fallback={<p className="text-sm text-navy/70">Loading the quotation form.</p>}>
+                  <QuoteInquiryForm />
+                </Suspense>
+              </div>
             </div>
           </div>
         </Container>
