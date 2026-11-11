@@ -18,10 +18,10 @@ import {
 type Status = "idle" | "sending" | "success" | "error" | "unavailable";
 
 const fieldClass =
-  "h-11 w-full rounded-lg border border-line bg-white px-3 text-sm font-normal text-navy outline-none transition-colors placeholder:text-navy/35 focus:border-blue disabled:cursor-not-allowed disabled:opacity-60";
+  "h-10 w-full rounded-lg border border-line bg-white px-2.5 text-[13px] font-normal text-navy outline-none transition-colors placeholder:text-navy/35 focus:border-blue disabled:cursor-not-allowed disabled:opacity-60 sm:h-11 sm:px-3 sm:text-sm";
 
 const heroFieldClass =
-  "h-12 w-full rounded-xl border border-transparent bg-white px-3.5 text-sm font-normal text-navy shadow-sm outline-none transition-colors placeholder:text-navy/40 focus:ring-2 focus:ring-white/70 disabled:cursor-not-allowed disabled:opacity-60 [&:-webkit-autofill]:[-webkit-text-fill-color:#172B4D] [&:-webkit-autofill]:[box-shadow:inset_0_0_0_1000px_#ffffff]";
+  "h-10 w-full rounded-xl border border-transparent bg-white px-2.5 text-[13px] font-normal text-navy shadow-sm outline-none transition-colors placeholder:text-navy/40 focus:ring-2 focus:ring-white/70 disabled:cursor-not-allowed disabled:opacity-60 sm:h-12 sm:px-3.5 sm:text-sm [&:-webkit-autofill]:[-webkit-text-fill-color:#172B4D] [&:-webkit-autofill]:[box-shadow:inset_0_0_0_1000px_#ffffff]";
 
 function Field({
   label,
@@ -37,7 +37,7 @@ function Field({
   tone?: "default" | "light";
 }) {
   return (
-    <label className={`grid gap-2 text-sm font-semibold ${tone === "light" ? "text-white" : "text-navy"}`}>
+    <label className={`grid gap-1.5 text-xs leading-4 font-semibold sm:gap-2 sm:text-sm sm:leading-5 ${tone === "light" ? "text-white" : "text-navy"}`}>
       <span>
         {label}
         {optional ? (
@@ -152,20 +152,20 @@ export function ContactInquiryForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="grid gap-4">
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4">
         <Field label="Full name" tone="light" error={errors.fullName}>
           <input name="fullName" autoComplete="name" placeholder="Your name" className={heroFieldClass} disabled={sending} />
         </Field>
-        <Field label="Company / business name" tone="light" optional error={errors.company}>
+        <Field label="Company name" tone="light" optional error={errors.company}>
           <input name="company" autoComplete="organization" placeholder="Company name" className={heroFieldClass} disabled={sending} />
         </Field>
         <Field label="Business email" tone="light" error={errors.email}>
-          <input name="email" type="email" autoComplete="email" placeholder="name@company.com" className={heroFieldClass} disabled={sending} />
+          <input name="email" type="email" autoComplete="email" placeholder="Email" className={heroFieldClass} disabled={sending} />
         </Field>
         <Field label="Country" tone="light" error={errors.country}>
           <input name="country" autoComplete="country-name" placeholder="Country" className={heroFieldClass} disabled={sending} />
         </Field>
-        <Field label="Phone / WhatsApp number" tone="light" optional error={errors.phone}>
+        <Field label="Phone / WhatsApp" tone="light" optional error={errors.phone}>
           <input name="phone" type="tel" autoComplete="tel" placeholder="+92 …" className={heroFieldClass} disabled={sending} />
         </Field>
         <Field label="Subject" tone="light" optional error={errors.subject}>
@@ -238,7 +238,7 @@ export function ProductInquiryForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="grid gap-4">
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4">
         <Field label="Full name" error={errors.fullName}>
           <input name="fullName" autoComplete="name" placeholder="Your name" className={fieldClass} disabled={sending} />
         </Field>
@@ -246,7 +246,7 @@ export function ProductInquiryForm() {
           <input name="company" autoComplete="organization" placeholder="Company name" className={fieldClass} disabled={sending} />
         </Field>
         <Field label="Business email" error={errors.email}>
-          <input name="email" type="email" autoComplete="email" placeholder="name@company.com" className={fieldClass} disabled={sending} />
+          <input name="email" type="email" autoComplete="email" placeholder="Email" className={fieldClass} disabled={sending} />
         </Field>
         <Field label="Country" error={errors.country}>
           <input name="country" autoComplete="country-name" placeholder="Country" className={fieldClass} disabled={sending} />
