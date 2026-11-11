@@ -12,8 +12,8 @@ function HeroHighlights({ onImage }: { onImage?: boolean }) {
     <ul
       className={
         onImage
-          ? "grid w-full grid-cols-2 gap-x-4 gap-y-4 lg:grid-cols-4 lg:gap-x-8"
-          : "grid grid-cols-2 gap-x-6 gap-y-5"
+          ? "hidden w-full grid-cols-2 gap-x-4 gap-y-4 min-[600px]:grid lg:grid-cols-4 lg:gap-x-8"
+          : "hidden grid-cols-2 gap-x-6 gap-y-5 min-[600px]:grid"
       }
     >
       {heroHighlights.map((item, index) => {
@@ -100,7 +100,7 @@ function HeroCopy({ onImage }: { onImage?: boolean }) {
       </div>
       </div>
       {onImage ? (
-        <div className="mt-12 lg:mt-20">
+        <div className="mt-12 hidden min-[600px]:block lg:mt-20">
           <HeroHighlights onImage />
         </div>
       ) : null}
