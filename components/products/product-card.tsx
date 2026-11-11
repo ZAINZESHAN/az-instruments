@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { quoteHref } from "@/lib/inquiry";
 import { getCategoryTitle, getGroupName, type Product } from "@/lib/products";
 
 export function ProductCard({ product }: { product: Product }) {
@@ -33,19 +34,19 @@ export function ProductCard({ product }: { product: Product }) {
         {product.catalogueCode ? (
           <p className="mt-2 text-sm font-semibold text-navy/65">{product.catalogueCode}</p>
         ) : null}
-        <div className="mt-auto flex items-center justify-between gap-3 pt-5">
+        <div className="mt-auto flex flex-wrap items-center justify-between gap-x-3 gap-y-2 pt-5">
           <Link
             href={`/products/${product.slug}`}
             className="text-sm font-semibold text-blue transition-colors hover:text-blue-deep"
           >
             View Details
           </Link>
-          <span
-            aria-hidden="true"
-            className="text-sm font-semibold text-blue/0 transition group-hover:text-blue"
+          <Link
+            href={quoteHref(product)}
+            className="text-sm font-semibold text-navy transition-colors hover:text-blue"
           >
-            →
-          </span>
+            Request a Quote
+          </Link>
         </div>
       </div>
     </article>

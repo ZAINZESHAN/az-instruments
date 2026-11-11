@@ -6,6 +6,7 @@ import { PrimaryNav } from "@/components/layout/primary-nav";
 import { ButtonLink } from "@/components/ui/button-link";
 import { CloseIcon, MenuIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
+import { QUOTE_FORM_HREF } from "@/lib/inquiry";
 import { site } from "@/lib/site";
 
 export function MobileNav() {
@@ -82,7 +83,7 @@ export function MobileNav() {
                   <WhatsAppIcon className="h-4 w-4" />
                   WhatsApp
                 </ButtonLink>
-                <ButtonLink href="/contact" className="w-full" onClick={() => setOpen(false)}>
+                <ButtonLink href={QUOTE_FORM_HREF} className="w-full" onClick={() => setOpen(false)}>
                   Request a Quote
                 </ButtonLink>
               </div>

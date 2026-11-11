@@ -4,7 +4,7 @@ import { ProductCard } from "@/components/products/product-card";
 import { ButtonLink } from "@/components/ui/button-link";
 import { WhatsAppIcon } from "@/components/ui/icons";
 import { brandMedia } from "@/lib/brand-media";
-import { whatsappHref } from "@/lib/inquiry";
+import { QUOTE_FORM_HREF, whatsappHref } from "@/lib/inquiry";
 import { products } from "@/lib/products";
 import { site } from "@/lib/site";
 
@@ -68,7 +68,7 @@ export function ProductsExperience() {
               <ButtonLink href="#product-collection" className="h-12 px-6">
                 Explore Our Products
               </ButtonLink>
-              <ButtonLink href="/contact" variant="outline" className="h-12 bg-white px-6">
+              <ButtonLink href={QUOTE_FORM_HREF} variant="outline" className="h-12 bg-white px-6">
                 Request a Quote
               </ButtonLink>
             </div>
@@ -90,7 +90,7 @@ export function ProductsExperience() {
                 {products.length} instruments with approved product photographs.
               </p>
             </div>
-            <ButtonLink href="/contact" variant="outline" className="shrink-0 bg-white">
+            <ButtonLink href={QUOTE_FORM_HREF} variant="outline" className="shrink-0 bg-white">
               Request a Quote
             </ButtonLink>
           </div>
@@ -115,7 +115,7 @@ export function ProductsExperience() {
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/contact">Request a Quote</ButtonLink>
+            <ButtonLink href={QUOTE_FORM_HREF}>Request a Quote</ButtonLink>
             <ButtonLink
               href={whatsappHref(
                 "Hello AZ Instruments, I would like to enquire about surgical instruments.",

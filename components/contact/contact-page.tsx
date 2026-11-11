@@ -1,7 +1,8 @@
+import { Suspense } from "react";
 import { Container } from "@/components/layout/container";
 import { ButtonLink } from "@/components/ui/button-link";
 import { PinIcon, SupportIcon, WhatsAppIcon } from "@/components/ui/icons";
-import { ContactInquiryForm, ProductInquiryForm } from "@/components/contact/inquiry-forms";
+import { ContactInquiryForm, ProductInquiryForm, QuoteInquiryForm } from "@/components/contact/inquiry-forms";
 import { site } from "@/lib/site";
 
 const mapQuery = encodeURIComponent(
@@ -135,6 +136,24 @@ export function ContactPageContent() {
             </p>
             <div className="mt-8 rounded-[1.75rem] border border-line bg-white p-6 sm:p-8">
               <ProductInquiryForm />
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section id="request-quote" className="scroll-mt-28 border-t border-line bg-white">
+        <Container className="py-12 sm:py-16 lg:py-20">
+          <div className="mx-auto max-w-3xl">
+            <p className="text-xs font-semibold tracking-[0.16em] text-blue uppercase">Request a quote</p>
+            <h2 className="mt-3 type-section text-navy">Request a quotation</h2>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-navy/75">
+              For international buyers who need a price on a named instrument, a list, or a custom
+              specification. Include the category, quantity, and any requirement you already have.
+            </p>
+            <div className="mt-8 rounded-[1.75rem] border border-line bg-ice/40 p-6 sm:p-8">
+              <Suspense fallback={<p className="text-sm text-navy/70">Loading the quotation form.</p>}>
+                <QuoteInquiryForm />
+              </Suspense>
             </div>
           </div>
         </Container>

@@ -13,8 +13,15 @@ export const PRODUCT_CATEGORIES = [
   "Multiple Categories",
 ] as const;
 
+export const QUOTE_CATEGORIES = ["Dental", "Orthopedic", "Orthodontic"] as const;
+
+export const QUOTE_FILE_MAX_BYTES = 5 * 1024 * 1024;
+
+export const QUOTE_FILE_EXTENSIONS = [".pdf", ".jpg", ".jpeg", ".png", ".xls", ".xlsx"] as const;
+
 export type EnquiryType = (typeof ENQUIRY_TYPES)[number];
 export type ProductCategory = (typeof PRODUCT_CATEGORIES)[number];
+export type QuoteCategory = (typeof QUOTE_CATEGORIES)[number];
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const CONTROL_CHARS = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
@@ -29,6 +36,10 @@ export const INQUIRY_LIMITS = {
   message: { min: 10, max: 4000 },
   productName: { max: 160 },
   quantity: { max: 80 },
+  instrumentList: { min: 2, max: 2000 },
+  specifications: { min: 10, max: 4000 },
+  targetPrice: { max: 120 },
+  additionalMessage: { max: 4000 },
 } as const;
 
 export type ContactInquiry = {
@@ -56,7 +67,23 @@ export type ProductInquiry = {
   message: string;
 };
 
-export type InquiryPayload = ContactInquiry | ProductInquiry;
+export type QuoteInquiry = {
+  kind: "quote";
+  fullName: string;
+  company: string;
+  email: string;
+  country: string;
+  phone: string;
+  category: QuoteCategory;
+  productName: string;
+  quantity: string;
+  specifications: string;
+  targetPrice: string;
+  message: string;
+  referenceFileName: string;
+};
+
+export type InquiryPayload = ContactInquiry | ProductInquiry | QuoteInquiry;
 export type FieldErrors = Record<string, string>;
 
 function clean(value: unknown) {
@@ -70,6 +97,30 @@ function isEnquiryType(value: string): value is EnquiryType {
 
 function isProductCategory(value: string): value is ProductCategory {
   return (PRODUCT_CATEGORIES as readonly string[]).includes(value);
+}
+
+function isQuoteCategory(value: string): value is QuoteCategory {
+  return (QUOTE_CATEGORIES as readonly string[]).includes(value);
+}
+
+export function quoteFileExtension(filename: string) {
+  const base = filename.split(/[/\\]/).pop() ?? "";
+  const dot = base.lastIndexOf(".");
+  if (dot <= 0) return "";
+  return base.slice(dot).toLowerCase();
+}
+
+export function quoteFileClientError(file: { name: string; size: number }) {
+  if (!file.name.trim() || file.size <= 0) {
+    return "The file is empty.";
+  }
+  if (file.size > QUOTE_FILE_MAX_BYTES) {
+    return "The file must be 5 MB or smaller.";
+  }
+  if (!(QUOTE_FILE_EXTENSIONS as readonly string[]).includes(quoteFileExtension(file.name))) {
+    return "Use a PDF, JPG, PNG, XLS, or XLSX file.";
+  }
+  return null;
 }
 
 function sharedErrors(input: Record<string, unknown>) {
@@ -194,6 +245,80 @@ export function validateProductInquiry(
   };
 }
 
+export function validateQuoteInquiry(
+  input: Record<string, unknown>,
+): { ok: true; data: QuoteInquiry } | { ok: false; errors: FieldErrors } {
+  const shared = sharedErrors(input);
+  const errors = { ...shared.errors };
+  const category = clean(input.category);
+  const productName = clean(input.productName);
+  const quantity = clean(input.quantity);
+  const specifications = clean(input.specifications);
+  const targetPrice = clean(input.targetPrice);
+  const message = clean(input.message);
+
+  if (shared.company.length < 2) {
+    errors.company = "Please enter your company name.";
+  }
+
+  if (shared.phone.replace(/\D/g, "").length < INQUIRY_LIMITS.phone.minDigits) {
+    errors.phone = "Please enter a WhatsApp or phone number.";
+  }
+
+  if (!isQuoteCategory(category)) {
+    errors.category = "Please select a product category.";
+  }
+
+  if (
+    productName.length < INQUIRY_LIMITS.instrumentList.min ||
+    productName.length > INQUIRY_LIMITS.instrumentList.max
+  ) {
+    errors.productName = "Please list the product or instruments.";
+  }
+
+  if (!quantity || quantity.length > INQUIRY_LIMITS.quantity.max) {
+    errors.quantity = "Please enter the required quantity.";
+  }
+
+  if (
+    specifications.length < INQUIRY_LIMITS.specifications.min ||
+    specifications.length > INQUIRY_LIMITS.specifications.max
+  ) {
+    errors.specifications = "Please describe the customization or specification.";
+  }
+
+  if (targetPrice.length > INQUIRY_LIMITS.targetPrice.max) {
+    errors.targetPrice = "Target price is too long.";
+  }
+
+  if (message.length > INQUIRY_LIMITS.additionalMessage.max) {
+    errors.message = "The message is too long.";
+  }
+
+  if (Object.keys(errors).length > 0) {
+    return { ok: false, errors };
+  }
+
+  return {
+    ok: true,
+    data: {
+      kind: "quote",
+      fullName: shared.fullName,
+      company: shared.company,
+      email: shared.email,
+      country: shared.country,
+      phone: shared.phone,
+      category: category as QuoteCategory,
+      productName,
+      quantity,
+      specifications,
+      targetPrice,
+      message,
+      referenceFileName: "",
+    },
+  };
+}
+
 export function inquiryText(inquiry: InquiryPayload) {
   if (inquiry.kind === "contact") {
     return [
@@ -211,20 +336,43 @@ export function inquiryText(inquiry: InquiryPayload) {
     ].join("\n");
   }
 
+  if (inquiry.kind === "product") {
+    return [
+      "New product enquiry",
+      "",
+      `Name: ${inquiry.fullName}`,
+      `Company: ${inquiry.company || "Not provided"}`,
+      `Email: ${inquiry.email}`,
+      `Country: ${inquiry.country}`,
+      `Phone / WhatsApp: ${inquiry.phone || "Not provided"}`,
+      `Enquiry type: ${inquiry.enquiryType}`,
+      `Product category: ${inquiry.category}`,
+      `Product name: ${inquiry.productName || "Not provided"}`,
+      `Estimated quantity: ${inquiry.quantity || "Not provided"}`,
+      "",
+      "Requirements:",
+      inquiry.message,
+    ].join("\n");
+  }
+
   return [
-    "New product enquiry",
+    "New quotation request",
     "",
     `Name: ${inquiry.fullName}`,
-    `Company: ${inquiry.company || "Not provided"}`,
+    `Company: ${inquiry.company}`,
     `Email: ${inquiry.email}`,
     `Country: ${inquiry.country}`,
-    `Phone / WhatsApp: ${inquiry.phone || "Not provided"}`,
-    `Enquiry type: ${inquiry.enquiryType}`,
+    `WhatsApp / Phone: ${inquiry.phone}`,
     `Product category: ${inquiry.category}`,
-    `Product name: ${inquiry.productName || "Not provided"}`,
-    `Estimated quantity: ${inquiry.quantity || "Not provided"}`,
+    `Product / instrument list: ${inquiry.productName}`,
+    `Required quantity: ${inquiry.quantity}`,
+    `Target price: ${inquiry.targetPrice || "Not provided"}`,
+    `Reference file: ${inquiry.referenceFileName || "Not provided"}`,
     "",
-    "Requirements:",
-    inquiry.message,
+    "Customization / specifications:",
+    inquiry.specifications,
+    "",
+    "Additional message:",
+    inquiry.message || "Not provided",
   ].join("\n");
 }

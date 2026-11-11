@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState, type ReactNode } from "react";
+import { useSearchParams } from "next/navigation";
 import { ButtonLink } from "@/components/ui/button-link";
 import { WhatsAppIcon } from "@/components/ui/icons";
 import { whatsappHref } from "@/lib/inquiry";
@@ -8,9 +9,12 @@ import { site } from "@/lib/site";
 import {
   ENQUIRY_TYPES,
   PRODUCT_CATEGORIES,
+  QUOTE_CATEGORIES,
   inquiryText,
+  quoteFileClientError,
   validateContactInquiry,
   validateProductInquiry,
+  validateQuoteInquiry,
   type FieldErrors,
   type InquiryPayload,
 } from "@/lib/inquiries";
@@ -55,23 +59,29 @@ function Field({
 function Notice({
   status,
   fallbackMessage,
+  successText = "Your enquiry was sent to AZ Instruments. We will reply using the email or phone you provided.",
+  attachmentPending = false,
 }: {
   status: Status;
   fallbackMessage: string;
+  successText?: string;
+  attachmentPending?: boolean;
 }) {
+  const fileNote = attachmentPending ? " The reference file was not delivered." : "";
+
   if (status === "success") {
     return (
-      <p className="rounded-xl border border-teal/30 bg-teal/10 px-4 py-3 text-sm leading-6 text-navy" role="status">
-        Your enquiry was sent to AZ Instruments. We will reply using the email or phone you provided.
+      <p className="rounded-xl border border-teal/30 bg-teal/10 px-4 py-3 text-left text-sm leading-6 text-navy" role="status">
+        {successText}
       </p>
     );
   }
 
   if (status === "unavailable") {
     return (
-      <div className="rounded-xl border border-line bg-ice px-4 py-3 text-sm leading-6 text-navy" role="status">
+      <div className="rounded-xl border border-line bg-ice px-4 py-3 text-left text-sm leading-6 text-navy" role="status">
         <p>
-          This enquiry was not delivered, so it is not marked as sent. Email{" "}
+          This enquiry was not delivered, so it is not marked as sent.{fileNote} Email{" "}
           <a className="font-semibold text-blue" href={site.email.href}>
             {site.email.display}
           </a>{" "}
@@ -89,8 +99,8 @@ function Notice({
 
   if (status === "error") {
     return (
-      <p className="rounded-xl border border-[#b42318]/30 bg-[#b42318]/5 px-4 py-3 text-sm leading-6 text-navy" role="alert">
-        The enquiry could not be delivered. Please try again, or send it on WhatsApp.
+      <p className="rounded-xl border border-[#b42318]/30 bg-[#b42318]/5 px-4 py-3 text-left text-sm leading-6 text-navy" role="alert">
+        The enquiry could not be delivered.{fileNote} Please try again, or send it on WhatsApp.
       </p>
     );
   }
@@ -275,6 +285,181 @@ export function ProductInquiryForm() {
         className="inline-flex h-10 w-full items-center justify-center rounded-lg bg-blue px-5 text-sm font-semibold text-white transition-colors hover:bg-blue-deep disabled:cursor-not-allowed disabled:opacity-60"
       >
         {sending ? "Sending…" : "Send product enquiry"}
+      </button>
+    </form>
+  );
+}
+
+const submitClass =
+  "inline-flex h-10 w-full items-center justify-center rounded-lg bg-blue px-5 text-sm font-semibold text-white transition-colors hover:bg-blue-deep disabled:cursor-not-allowed disabled:opacity-60";
+
+export function QuoteInquiryForm() {
+  const params = useSearchParams();
+  const product = (params.get("product") ?? "").trim().slice(0, 500);
+  const code = (params.get("code") ?? "").trim().slice(0, 80);
+  const categoryParam = (params.get("category") ?? "").trim();
+  const category = (QUOTE_CATEGORIES as readonly string[]).includes(categoryParam) ? categoryParam : "";
+  const instrumentList = [product, code ? `(${code})` : ""].filter(Boolean).join(" ");
+  const [errors, setErrors] = useState<FieldErrors>({});
+  const [status, setStatus] = useState<Status>("idle");
+  const [fallback, setFallback] = useState("");
+  const [attachmentPending, setAttachmentPending] = useState(false);
+  const [sentWithFile, setSentWithFile] = useState(false);
+  const sending = status === "sending";
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const fields = Object.fromEntries(
+      Array.from(data.entries()).filter((entry): entry is [string, string] => typeof entry[1] === "string"),
+    );
+    const website = String(fields.website ?? "");
+    const parsed = validateQuoteInquiry(fields);
+    const nextErrors = parsed.ok ? {} : { ...parsed.errors };
+    const file = data.get("referenceFile");
+    const uploaded = file instanceof File && (file.size > 0 || file.name.trim().length > 0);
+    if (uploaded) {
+      const fileError = quoteFileClientError(file);
+      if (fileError) nextErrors.referenceFile = fileError;
+    }
+
+    if (!parsed.ok || nextErrors.referenceFile) {
+      setErrors(nextErrors);
+      setStatus("idle");
+      setAttachmentPending(false);
+      return;
+    }
+
+    setErrors({});
+    setStatus("sending");
+    setAttachmentPending(uploaded);
+    setFallback(
+      inquiryText({
+        ...parsed.data,
+        referenceFileName: file instanceof File && uploaded ? file.name : "",
+      }),
+    );
+
+    try {
+      const response = await fetch("/api/inquiries", {
+        method: "POST",
+        body: data,
+      });
+      const body = (await response.json().catch(() => null)) as
+        | { ok?: boolean; code?: string; errors?: FieldErrors }
+        | null;
+      if (website.trim()) {
+        setStatus("idle");
+        return;
+      }
+      if (response.ok && body?.ok) {
+        form.reset();
+        setSentWithFile(uploaded);
+        setAttachmentPending(false);
+        setStatus("success");
+        return;
+      }
+      if (body?.errors) {
+        setErrors(body.errors);
+        setStatus("idle");
+        return;
+      }
+      setStatus(body?.code === "not_configured" ? "unavailable" : "error");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  return (
+    <form key={`${instrumentList}|${category}`} onSubmit={onSubmit} noValidate className="grid gap-3.5">
+      <input type="hidden" name="kind" value="quote" />
+      <Field label="Full name" error={errors.fullName}>
+        <input name="fullName" autoComplete="name" placeholder="Your name" className={fieldClass} disabled={sending} />
+      </Field>
+      <Field label="Company name" error={errors.company}>
+        <input name="company" autoComplete="organization" placeholder="Company name" className={fieldClass} disabled={sending} />
+      </Field>
+      <Field label="Business email" error={errors.email}>
+        <input name="email" type="email" autoComplete="email" placeholder="Email" className={fieldClass} disabled={sending} />
+      </Field>
+      <Field label="Country" error={errors.country}>
+        <input name="country" autoComplete="country-name" placeholder="Country" className={fieldClass} disabled={sending} />
+      </Field>
+      <Field label="WhatsApp / Phone" error={errors.phone}>
+        <input name="phone" autoComplete="tel" placeholder="Include the country code" className={fieldClass} disabled={sending} />
+      </Field>
+      <Field label="Product category" error={errors.category}>
+        <select name="category" defaultValue={category} className={fieldClass} disabled={sending}>
+          <option value="" disabled>
+            Select a category
+          </option>
+          {QUOTE_CATEGORIES.map((item) => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))}
+        </select>
+      </Field>
+      <Field label="Product name / instrument list" error={errors.productName}>
+        <textarea
+          name="productName"
+          rows={3}
+          defaultValue={instrumentList}
+          placeholder="Instrument names, or one name per line."
+          className={`${fieldClass} h-auto py-2.5`}
+          disabled={sending}
+        />
+      </Field>
+      <Field label="Required quantity" error={errors.quantity}>
+        <input name="quantity" placeholder="For example, 500" className={fieldClass} disabled={sending} />
+      </Field>
+      <Field label="Customization / specifications" error={errors.specifications}>
+        <textarea
+          name="specifications"
+          rows={4}
+          placeholder="Finish, size, or other requirements."
+          className={`${fieldClass} h-auto py-2.5`}
+          disabled={sending}
+        />
+      </Field>
+      <Field label="Target price" optional error={errors.targetPrice}>
+        <input name="targetPrice" placeholder="In your currency, if you have a target" className={fieldClass} disabled={sending} />
+      </Field>
+      <Field label="Reference file" optional error={errors.referenceFile}>
+        <input
+          name="referenceFile"
+          type="file"
+          accept=".pdf,.jpg,.jpeg,.png,.xls,.xlsx,application/pdf,image/jpeg,image/png,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          className="block w-full text-left text-[12px] font-normal text-navy file:mr-3 file:h-9 file:rounded-lg file:border-0 file:bg-ice file:px-3 file:text-[12px] file:font-semibold file:text-navy sm:text-sm"
+          disabled={sending}
+        />
+        <span className="text-[11px] leading-4 font-normal text-muted sm:text-xs">
+          PDF, JPG, PNG, XLS, or XLSX. Maximum 5 MB. A selected file is sent with the request.
+        </span>
+      </Field>
+      <Field label="Additional message" optional error={errors.message}>
+        <textarea
+          name="message"
+          rows={3}
+          placeholder="Anything else the quotation should cover."
+          className={`${fieldClass} h-auto py-2.5`}
+          disabled={sending}
+        />
+      </Field>
+      <input name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+      <Notice
+        status={status}
+        fallbackMessage={fallback}
+        attachmentPending={attachmentPending && status !== "success"}
+        successText={
+          sentWithFile
+            ? "Your quotation request was sent to AZ Instruments, including the reference file. We will reply using the email or phone you provided."
+            : "Your quotation request was sent to AZ Instruments. We will reply using the email or phone you provided."
+        }
+      />
+      <button type="submit" disabled={sending} className={submitClass}>
+        {sending ? "Sending…" : "Request a quote"}
       </button>
     </form>
   );

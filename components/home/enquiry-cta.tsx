@@ -1,5 +1,6 @@
 import { Container } from "@/components/layout/container";
 import { ButtonLink } from "@/components/ui/button-link";
+import { QUOTE_FORM_HREF } from "@/lib/inquiry";
 
 export function EnquiryCta() {
   return (
@@ -17,7 +18,7 @@ export function EnquiryCta() {
             <ButtonLink href="/products" className="h-12 px-6">
               Explore Catalogue
             </ButtonLink>
-            <ButtonLink href="/contact" variant="outline" className="h-12 bg-white px-6">
+            <ButtonLink href={QUOTE_FORM_HREF} variant="outline" className="h-12 bg-white px-6">
               Request a Quote
             </ButtonLink>
           </div>

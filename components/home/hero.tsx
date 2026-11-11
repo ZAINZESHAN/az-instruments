@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ButtonLink } from "@/components/ui/button-link";
 import { BookIcon, GearIcon, GlobeIcon, PinIcon } from "@/components/ui/icons";
 import { brandMedia } from "@/lib/brand-media";
+import { QUOTE_FORM_HREF } from "@/lib/inquiry";
 import { heroHighlights } from "@/lib/site";
 
 const highlightIcons = [PinIcon, GlobeIcon, GearIcon, BookIcon];
@@ -94,7 +95,7 @@ function HeroCopy({ onImage }: { onImage?: boolean }) {
         <ButtonLink href="/products" className="h-12 px-6">
           Explore Our Products
         </ButtonLink>
-        <ButtonLink href="/contact" variant="outline" className="h-12 bg-white px-6">
+        <ButtonLink href={QUOTE_FORM_HREF} variant="outline" className="h-12 bg-white px-6">
           Request a Quote
         </ButtonLink>
       </div>

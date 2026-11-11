@@ -5,6 +5,7 @@ import { MobileNav } from "@/components/layout/mobile-nav";
 import { PrimaryNav } from "@/components/layout/primary-nav";
 import { ButtonLink } from "@/components/ui/button-link";
 import { WhatsAppIcon } from "@/components/ui/icons";
+import { QUOTE_FORM_HREF } from "@/lib/inquiry";
 import { site } from "@/lib/site";
 
 export function Header() {
@@ -42,7 +43,7 @@ export function Header() {
           >
             <WhatsAppIcon className="h-5 w-5" />
           </a>
-          <ButtonLink href="/contact">Request a Quote</ButtonLink>
+          <ButtonLink href={QUOTE_FORM_HREF}>Request a Quote</ButtonLink>
         </div>
         <MobileNav />
       </Container>

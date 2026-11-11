@@ -9,7 +9,7 @@ import {
   WhatsAppIcon,
 } from "@/components/ui/icons";
 import { brandMedia } from "@/lib/brand-media";
-import { whatsappHref } from "@/lib/inquiry";
+import { QUOTE_FORM_HREF, whatsappHref } from "@/lib/inquiry";
 import { divisions, site } from "@/lib/site";
 
 const aboutImage = brandMedia.aboutHero;
@@ -387,7 +387,7 @@ export function AboutPageContent() {
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href="/contact" className="h-12 px-6">
+                <ButtonLink href={QUOTE_FORM_HREF} className="h-12 px-6">
                   Request a Quote
                 </ButtonLink>
                 <ButtonLink href="/contact" variant="outline" className="h-12 bg-white px-6">

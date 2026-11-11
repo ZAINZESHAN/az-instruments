@@ -4,7 +4,7 @@ import { Container } from "@/components/layout/container";
 import { ButtonLink } from "@/components/ui/button-link";
 import { HandshakeIcon, InspectIcon, PenIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { catalogueCategories, categoryIllustrations } from "@/lib/catalogue";
-import { whatsappHref } from "@/lib/inquiry";
+import { QUOTE_FORM_HREF, whatsappHref } from "@/lib/inquiry";
 import { site } from "@/lib/site";
 
 const banner = {
@@ -113,7 +113,7 @@ export function OemPageContent() {
               pattern or from your drawing, sample, or specification.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/contact" className="h-12 px-6">
+              <ButtonLink href={QUOTE_FORM_HREF} className="h-12 px-6">
                 Request an OEM Quote
               </ButtonLink>
               <ButtonLink href="/products" variant="outline" className="h-12 bg-white px-6">
