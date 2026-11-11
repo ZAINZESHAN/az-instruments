@@ -29,12 +29,12 @@ export function ComplianceStrip() {
 
   return (
     <section className="border-t border-line bg-white" aria-label="Certification preview">
-      <Container className="py-16 sm:py-20 lg:py-24">
+      <Container className="py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+          <h2 className="type-section text-navy">
             Certifications &amp; Regulatory Compliance
           </h2>
-          <p className="mt-4 text-base leading-7 text-muted sm:text-lg">
+          <p className="mt-4 type-lead text-muted">
             Our certifications and regulatory documentation support our commitment to
             quality and applicable requirements.
           </p>
@@ -46,7 +46,7 @@ export function ComplianceStrip() {
                 <span className="text-[11px] font-semibold tracking-[0.18em] text-muted uppercase">
                   Placeholder
                 </span>
-                <span className="mt-4 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+                <span className="mt-4 type-section text-navy">
                   {item.name}
                 </span>
                 <span className="mt-3 max-w-[14rem] text-sm leading-6 text-muted">

@@ -4,12 +4,12 @@ import { ButtonLink } from "@/components/ui/button-link";
 export function EnquiryCta() {
   return (
     <section className="bg-ice">
-      <Container className="py-16 sm:py-20 lg:py-24">
+      <Container className="py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+          <h2 className="type-section text-navy">
             Looking for the Right Instruments?
           </h2>
-          <p className="mt-4 text-base leading-7 text-navy/75 sm:text-lg">
+          <p className="mt-4 type-lead text-navy/75">
             Buyers and distributors can explore the catalogue, or send the product
             name and AZI catalogue number when they want to discuss a requirement.
           </p>

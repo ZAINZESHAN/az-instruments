@@ -29,7 +29,7 @@ export function CategoryCard({ href, title, summary, count, image, alt }: Catego
         <p className="text-xs font-semibold tracking-[0.16em] text-blue uppercase">
           {count} {count === 1 ? "instrument" : "instruments"}
         </p>
-        <h2 className="mt-2 text-2xl font-bold tracking-tight text-navy">{title}</h2>
+        <h2 className="mt-2 type-sub text-navy">{title}</h2>
         <p className="mt-3 flex-1 text-sm leading-6 text-navy/70">{summary}</p>
         <span className="mt-5 text-sm font-semibold text-blue group-hover:text-blue-deep">
           View Products

@@ -56,10 +56,10 @@ export function ProductsExperience() {
             <p className="text-xs font-semibold tracking-[0.18em] text-white/80 uppercase sm:text-sm">
               Product catalogue
             </p>
-            <h1 className="mt-4 text-4xl leading-[1.08] font-bold tracking-tight text-white sm:text-5xl">
+            <h1 className="mt-4 type-display text-white">
               Our Surgical Instruments
             </h1>
-            <p className="mt-5 text-base leading-7 text-white/85 sm:text-lg">
+            <p className="mt-5 type-lead text-white/85">
               Browse AZ Instruments&apos; range of surgical, dental, and orthodontic
               instruments for professional buyers and distributors. Each pattern is
               shown with its photograph from our approved catalogue collection.
@@ -83,7 +83,7 @@ export function ProductsExperience() {
               <p className="text-xs font-semibold tracking-[0.16em] text-blue uppercase">
                 Full collection
               </p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+              <h2 className="mt-3 type-section text-navy">
                 All Instruments
               </h2>
               <p className="mt-3 text-base leading-7 text-navy/70">

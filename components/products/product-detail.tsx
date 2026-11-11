@@ -75,7 +75,7 @@ export function ProductDetail({ product }: { product: Product }) {
             <p className="text-xs font-semibold tracking-[0.16em] text-blue uppercase">
               {categoryTitle}
             </p>
-            <h1 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+            <h1 className="mt-3 type-section text-navy">
               {product.name}
             </h1>
             <p className="mt-3 text-base text-navy/70">{groupName}</p>
@@ -166,7 +166,7 @@ export function ProductDetail({ product }: { product: Product }) {
 
         {related.length > 0 ? (
           <section className="mt-16 border-t border-line pt-12">
-            <h2 className="text-2xl font-bold tracking-tight text-navy">Related instruments</h2>
+            <h2 className="type-sub text-navy">Related instruments</h2>
             <ul className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
               {related.map((item) => (
                 <li key={item.slug}>

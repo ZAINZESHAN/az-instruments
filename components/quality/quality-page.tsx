@@ -114,10 +114,10 @@ export function QualityPageContent() {
             <p className="text-xs font-semibold tracking-[0.18em] text-white/80 uppercase sm:text-sm">
               Quality &amp; Certificates
             </p>
-            <h1 className="mt-4 max-w-[40rem] text-4xl leading-[1.08] font-bold tracking-tight text-white sm:text-5xl">
+            <h1 className="mt-4 max-w-[40rem] type-display text-white">
               Quality &amp; Commitment
             </h1>
-            <p className="mt-5 max-w-[38rem] text-base leading-7 text-white/85 sm:text-lg">
+            <p className="mt-5 max-w-[38rem] type-lead text-white/85">
               AZ Instruments supplies surgical and dental instruments with attention to finish,
               consistency, and the requirements a buyer sets out for the order.
             </p>
@@ -131,12 +131,12 @@ export function QualityPageContent() {
       </section>
 
       <section className="bg-white">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
               Quality commitment
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+            <h2 className="mt-3 type-section text-navy">
               How instruments are prepared for supply
             </h2>
             <p className="mt-5 text-base leading-7 text-navy/75">
@@ -152,7 +152,7 @@ export function QualityPageContent() {
                 className="rounded-2xl border border-line bg-ice/40 p-7 transition duration-300 hover:-translate-y-0.5 hover:border-blue/30 hover:bg-white hover:shadow-[0_16px_40px_-28px_rgba(23,105,255,0.35)]"
               >
                 <ShieldIcon className="h-7 w-7 text-blue" />
-                <h3 className="mt-4 text-xl font-bold tracking-tight text-navy">{item.title}</h3>
+                <h3 className="mt-4 type-sub text-navy">{item.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-navy/75">{item.text}</p>
               </li>
             ))}
@@ -161,12 +161,12 @@ export function QualityPageContent() {
       </section>
 
       <section className="border-y border-line bg-[#042848]">
-        <Container className="grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-2 lg:gap-16 lg:py-24">
+        <Container className="grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-2 lg:gap-16 lg:py-20">
           <div>
             <p className="text-xs font-semibold tracking-[0.18em] text-white/70 uppercase sm:text-sm">
               Quality control &amp; inspection
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="mt-3 type-section text-white">
               A look at the instrument before it is supplied
             </h2>
           </div>
@@ -191,12 +191,12 @@ export function QualityPageContent() {
       </section>
 
       <section className="bg-ice">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
               Documentation
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+            <h2 className="mt-3 type-section text-navy">
               Certifications &amp; Documentation
             </h2>
             <p className="mt-5 text-base leading-7 text-navy/75">
@@ -213,7 +213,7 @@ export function QualityPageContent() {
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-ice">
                   <ShieldIcon className="h-7 w-7 text-blue" />
                 </div>
-                <h3 className="mt-6 text-2xl font-bold tracking-tight text-navy">
+                <h3 className="mt-6 type-sub text-navy">
                   {certificate.title}
                 </h3>
                 <p className="mt-4 inline-flex rounded-full bg-ice px-3 py-1 text-xs font-semibold tracking-wide text-blue uppercase">
@@ -227,12 +227,12 @@ export function QualityPageContent() {
       </section>
 
       <section className="bg-white">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
               Customer commitment
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+            <h2 className="mt-3 type-section text-navy">
               Working with professional buyers
             </h2>
           </div>
@@ -256,11 +256,11 @@ export function QualityPageContent() {
       </section>
 
       <section className="border-t border-line bg-white">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="overflow-hidden rounded-[1.75rem] bg-[#042848] px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
             <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-2xl">
-                <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                <h2 className="type-section text-white">
                   Looking for a Reliable Surgical Instruments Supplier?
                 </h2>
                 <p className="mt-4 text-base leading-7 text-white/75">

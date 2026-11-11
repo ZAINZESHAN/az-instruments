@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { WhatsAppIcon } from "@/components/ui/icons";
-import { catalogueCategories } from "@/lib/catalogue";
 import { navItems, site } from "@/lib/site";
+
+const footerLinks = navItems.filter((item) => item.href !== "/downloads");
 
 export function Footer() {
   return (
@@ -17,16 +18,13 @@ export function Footer() {
 
         <div className="md:col-span-3">
           <h2 className="text-sm font-semibold tracking-[0.14em] text-ice uppercase">
-            Range
+            Explore
           </h2>
           <ul className="mt-4 space-y-2">
-            {catalogueCategories.map((category) => (
-              <li key={category.id}>
-                <Link
-                  href="/products#product-collection"
-                  className="text-sm text-white/78 hover:text-white"
-                >
-                  {category.title}
+            {footerLinks.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="text-sm text-white/78 hover:text-white">
+                  {item.label}
                 </Link>
               </li>
             ))}
@@ -72,7 +70,7 @@ export function Footer() {
         <Container className="flex flex-col gap-4 py-5 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>AZ Instruments · Sialkot, Pakistan</p>
           <nav aria-label="Footer" className="flex flex-wrap gap-x-4 gap-y-2">
-            {navItems.map((item) => (
+            {footerLinks.map((item) => (
               <Link key={item.href} href={item.href} className="hover:text-white">
                 {item.label}
               </Link>

@@ -24,7 +24,7 @@ export function ButtonLink({
   onClick,
 }: ButtonLinkProps) {
   const classes = cn(
-    "inline-flex h-11 items-center justify-center gap-2 rounded-lg px-5 text-sm font-semibold transition-colors",
+    "inline-flex h-10 items-center justify-center gap-2 rounded-lg px-4 text-[13px] font-semibold transition-colors sm:h-11 sm:px-5 sm:text-sm",
     variants[variant],
     className,
   );

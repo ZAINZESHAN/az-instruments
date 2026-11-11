@@ -17,10 +17,10 @@ export function ContactPageContent() {
             <p className="text-xs font-semibold tracking-[0.18em] text-white/80 uppercase sm:text-sm">
               Contact
             </p>
-            <h1 className="mt-4 text-4xl leading-[1.08] font-bold tracking-tight text-white sm:text-5xl">
+            <h1 className="mt-4 type-display text-white">
               Let&apos;s Start a Conversation
             </h1>
-            <p className="mt-5 text-base leading-7 text-white/85 sm:text-lg">
+            <p className="mt-5 type-lead text-white/85">
               International buyers, distributors, and healthcare instrument businesses can contact
               AZ Instruments for product information, quotations, and business enquiries.
             </p>
@@ -38,7 +38,7 @@ export function ContactPageContent() {
             </div>
           </div>
           <div className="rounded-[1.75rem] bg-[#063556] p-6 sm:p-8">
-            <h2 className="text-2xl font-bold tracking-tight text-white">Send a message</h2>
+            <h2 className="type-sub text-white">Send a message</h2>
             <p className="mt-2 text-sm leading-6 text-white/70">
               For a general enquiry. Required fields are checked before the message is sent.
             </p>
@@ -50,12 +50,12 @@ export function ContactPageContent() {
       </section>
 
       <section className="bg-white">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
               Reach us
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+            <h2 className="mt-3 type-section text-navy">
               Contact information
             </h2>
             <p className="mt-4 text-base leading-7 text-navy/75">
@@ -71,6 +71,9 @@ export function ContactPageContent() {
               <SupportIcon className="h-7 w-7 text-blue" />
               <h3 className="mt-4 text-sm font-semibold tracking-[0.14em] text-blue uppercase">Company</h3>
               <p className="mt-2 text-lg font-bold text-navy">{site.name}</p>
+              <a href={site.email.href} className="mt-2 block text-sm font-semibold text-navy hover:text-blue">
+                {site.email.display}
+              </a>
             </li>
             <li className="rounded-2xl border border-line bg-ice/40 p-6">
               <PinIcon className="h-7 w-7 text-blue" />
@@ -117,7 +120,7 @@ export function ContactPageContent() {
         <Container className="py-16 lg:py-24">
           <div className="mx-auto max-w-3xl">
             <p className="text-xs font-semibold tracking-[0.16em] text-blue uppercase">Product enquiry</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+            <h2 className="mt-3 type-section text-navy">
               Tell us what you need
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-7 text-navy/75">

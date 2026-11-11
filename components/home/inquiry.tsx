@@ -11,7 +11,7 @@ export function Inquiry() {
           <p className="text-sm font-semibold tracking-[0.16em] text-blue uppercase">
             Inquiry
           </p>
-          <h2 className="mt-3 text-4xl font-bold tracking-tight text-navy sm:text-5xl">
+          <h2 className="mt-3 type-display text-navy">
             Request a quotation
           </h2>
           <p className="mt-4 max-w-xl text-base leading-7 text-navy/75">

@@ -109,10 +109,10 @@ export function AboutPageContent() {
             <p className="text-xs font-semibold tracking-[0.18em] text-white/80 uppercase sm:text-sm">
               About Us
             </p>
-            <h1 className="mt-4 text-4xl leading-[1.08] font-bold tracking-tight text-white sm:text-5xl">
+            <h1 className="mt-4 type-display text-white">
               Dental, Orthopedic &amp; Orthodontic Instruments from Sialkot
             </h1>
-            <p className="mt-5 text-base leading-7 text-white/85 sm:text-lg">
+            <p className="mt-5 type-lead text-white/85">
               AZ Instruments supplies dental, orthopedic, and orthodontic instruments to
               professional buyers and distributors. The business, recorded on its chamber
               membership as A.Z. Instruments Company, is based at Street No. 1, Kacha Shahab
@@ -135,13 +135,13 @@ export function AboutPageContent() {
       </section>
 
       <section className="bg-white">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
             <div>
               <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
                 Our Story
               </p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+              <h2 className="mt-3 type-section text-navy">
                 A Sialkot firm with chamber membership since 2010
               </h2>
             </div>
@@ -168,15 +168,15 @@ export function AboutPageContent() {
       </section>
 
       <section className="border-y border-line bg-ice">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
               Who We Are
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+            <h2 className="mt-3 type-section text-navy">
               A supplier organised around three instrument groups
             </h2>
-            <p className="mt-5 text-base leading-7 text-navy/75 sm:text-lg">
+            <p className="mt-5 type-lead text-navy/75">
               {site.description} The public catalogue is limited to the patterns that have been
               prepared for buyers to review, rather than a general claim about every instrument
               made in Sialkot.
@@ -191,7 +191,7 @@ export function AboutPageContent() {
                 <span className="text-sm font-semibold tracking-[0.16em] text-blue">
                   {division.index}
                 </span>
-                <h3 className="mt-3 text-2xl font-bold tracking-tight text-navy">{division.title}</h3>
+                <h3 className="mt-3 type-sub text-navy">{division.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-muted">{division.summary}</p>
               </li>
             ))}
@@ -200,19 +200,19 @@ export function AboutPageContent() {
       </section>
 
       <section className="bg-white">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
               Our Mission &amp; Vision
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+            <h2 className="mt-3 type-section text-navy">
               Clear instruments. Direct quotations.
             </h2>
           </div>
           <ul className="mt-12 grid gap-6 lg:grid-cols-2">
             <li className="rounded-2xl border border-line bg-ice/50 p-8">
               <InspectIcon className="h-8 w-8 text-blue" />
-              <h3 className="mt-5 text-2xl font-bold tracking-tight text-navy">Mission</h3>
+              <h3 className="mt-5 type-sub text-navy">Mission</h3>
               <p className="mt-3 text-base leading-7 text-navy/75">
                 To present dental, orthopedic, and orthodontic instruments under the names buyers
                 can quote, and to answer enquiries with the product, quantity, and any custom
@@ -221,7 +221,7 @@ export function AboutPageContent() {
             </li>
             <li className="rounded-2xl border border-line bg-ice/50 p-8">
               <GlobeIcon className="h-8 w-8 text-blue" />
-              <h3 className="mt-5 text-2xl font-bold tracking-tight text-navy">Vision</h3>
+              <h3 className="mt-5 type-sub text-navy">Vision</h3>
               <p className="mt-3 text-base leading-7 text-navy/75">
                 To be a straightforward Sialkot source for professional buyers who want a readable
                 catalogue and a direct conversation about the instruments they need.
@@ -232,13 +232,13 @@ export function AboutPageContent() {
       </section>
 
       <section className="border-y border-line bg-ice">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
               <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
                 What We Offer
               </p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+              <h2 className="mt-3 type-section text-navy">
                 Catalogue patterns and custom work
               </h2>
             </div>
@@ -257,12 +257,12 @@ export function AboutPageContent() {
       </section>
 
       <section className="bg-white">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
               Quality &amp; Commitment
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+            <h2 className="mt-3 type-section text-navy">
               Chamber membership, as printed
             </h2>
             <p className="mt-5 text-base leading-7 text-navy/75">
@@ -291,12 +291,12 @@ export function AboutPageContent() {
       </section>
 
       <section className="border-y border-line bg-[#042848]">
-        <Container className="grid gap-10 py-16 sm:py-20 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:py-24">
+        <Container className="grid gap-10 py-12 sm:py-16 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:py-20">
           <div>
             <p className="text-xs font-semibold tracking-[0.18em] text-white/70 uppercase sm:text-sm">
               Our Experience
             </p>
-            <p className="mt-4 text-6xl font-bold tracking-tight text-white sm:text-7xl">15</p>
+            <p className="mt-4 type-stat text-white">15</p>
             <p className="mt-2 text-lg font-semibold text-white/85">
               years, as stated by the company
             </p>
@@ -317,12 +317,12 @@ export function AboutPageContent() {
       </section>
 
       <section className="bg-white">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
               Why Choose AZ Instruments
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+            <h2 className="mt-3 type-section text-navy">
               What a buyer can check before enquiring
             </h2>
           </div>
@@ -330,7 +330,7 @@ export function AboutPageContent() {
             {reasons.map((reason) => (
               <li key={reason.title} className="rounded-2xl border border-line bg-white p-7">
                 <HandshakeIcon className="h-7 w-7 text-blue" />
-                <h3 className="mt-4 text-xl font-bold tracking-tight text-navy">{reason.title}</h3>
+                <h3 className="mt-4 type-sub text-navy">{reason.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-navy/75">{reason.text}</p>
               </li>
             ))}
@@ -339,12 +339,12 @@ export function AboutPageContent() {
       </section>
 
       <section className="border-y border-line bg-ice">
-        <Container className="grid gap-8 py-16 sm:py-20 lg:grid-cols-[1fr_1fr] lg:items-center lg:py-24">
+        <Container className="grid gap-8 py-12 sm:py-16 lg:grid-cols-[1fr_1fr] lg:items-center lg:py-20">
           <div>
             <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
               Our Location
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+            <h2 className="mt-3 type-section text-navy">
               Sialkot, Pakistan
             </h2>
             <p className="mt-4 text-base leading-7 text-navy/75">
@@ -371,14 +371,14 @@ export function AboutPageContent() {
       </section>
 
       <section className="bg-white">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="overflow-hidden rounded-[1.75rem] bg-[#042848] px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
             <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-2xl">
                 <p className="text-xs font-semibold tracking-[0.18em] text-white/70 uppercase sm:text-sm">
                   Contact
                 </p>
-                <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                <h2 className="mt-3 type-section text-white">
                   Discuss a requirement or request a quotation
                 </h2>
                 <p className="mt-4 text-base leading-7 text-white/75">

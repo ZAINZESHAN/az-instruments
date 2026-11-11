@@ -6,12 +6,12 @@ import { catalogueCategories, categoryIllustrations } from "@/lib/catalogue";
 export function CategoryPreview() {
   return (
     <section className="bg-white">
-      <Container className="py-16 sm:py-20 lg:py-24">
+      <Container className="py-12 sm:py-16 lg:py-20">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
             Explore Our Catalogue
           </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+          <h2 className="mt-3 type-section text-navy">
             Instruments for Every Speciality
           </h2>
         </div>
@@ -35,7 +35,7 @@ export function CategoryPreview() {
                     <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-white/70 to-transparent" />
                   </div>
                   <div className="flex flex-1 flex-col border-t border-line px-6 pt-5 pb-6">
-                    <h3 className="text-2xl font-bold tracking-tight text-navy">
+                    <h3 className="type-sub text-navy">
                       {category.title}
                     </h3>
                     <p className="mt-3 text-sm leading-7 text-muted">{category.summary}</p>

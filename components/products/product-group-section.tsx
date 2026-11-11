@@ -11,7 +11,7 @@ export function ProductGroupSection({ id, title, products }: ProductGroupSection
   return (
     <section id={id} className="scroll-mt-40">
       <div className="flex items-end justify-between gap-4 border-b border-line pb-3">
-        <h3 className="text-xl font-bold tracking-tight text-navy sm:text-2xl">{title}</h3>
+        <h3 className="type-sub text-navy">{title}</h3>
         <p className="shrink-0 text-sm text-muted">
           {products.length} {products.length === 1 ? "instrument" : "instruments"}
         </p>

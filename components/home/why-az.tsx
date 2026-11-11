@@ -16,16 +16,16 @@ const image = brandMedia.whyAz;
 export function WhyAz() {
   return (
     <section className="overflow-hidden bg-navy">
-      <Container className="py-16 sm:py-20 lg:py-24">
+      <Container className="py-12 sm:py-16 lg:py-20">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
               Why AZ Instruments
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="mt-3 type-section text-white">
               Instruments Crafted with Precision. Quality You Can Focus On.
             </h2>
-            <p className="mt-4 text-base leading-7 text-white/80 sm:text-lg">
+            <p className="mt-4 type-lead text-white/80">
               AZ Instruments offers a range of dental, orthopedic, and orthodontic
               instruments for professional buyers seeking a dependable surgical
               instruments supplier from Sialkot.

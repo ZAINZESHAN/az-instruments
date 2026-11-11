@@ -12,7 +12,7 @@ export function PlaceholderPage({ title, message }: PlaceholderPageProps) {
       <p className="text-sm font-semibold tracking-[0.16em] text-blue uppercase">
         AZ Instruments
       </p>
-      <h1 className="mt-3 text-4xl font-bold tracking-tight text-navy sm:text-5xl">{title}</h1>
+      <h1 className="mt-3 type-display text-navy">{title}</h1>
       <p className="mt-4 max-w-xl text-base leading-7 text-muted">{message}</p>
       <Link
         href="/"

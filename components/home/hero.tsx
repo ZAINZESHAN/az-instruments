@@ -73,8 +73,8 @@ function HeroCopy({ onImage }: { onImage?: boolean }) {
       <h1
         className={
           onImage
-            ? "mt-4 text-4xl leading-[1.08] font-bold tracking-tight text-white sm:text-5xl"
-            : "mt-4 text-4xl leading-[1.08] font-bold tracking-tight text-navy sm:text-5xl"
+            ? "mt-4 type-display text-white"
+            : "mt-4 type-display text-navy"
         }
       >
         Premium Surgical &amp; Dental{" "}
@@ -83,8 +83,8 @@ function HeroCopy({ onImage }: { onImage?: boolean }) {
       <p
         className={
           onImage
-            ? "mt-5 text-base leading-7 text-white/85 sm:text-lg"
-            : "mt-5 text-base leading-7 text-navy/80 sm:text-lg"
+            ? "mt-5 type-lead text-white/85"
+            : "mt-5 type-lead text-navy/80"
         }
       >
         Explore our range of surgical, dental and orthodontic instruments for

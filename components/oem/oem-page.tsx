@@ -104,10 +104,10 @@ export function OemPageContent() {
             <p className="text-xs font-semibold tracking-[0.18em] text-white/80 uppercase sm:text-sm">
               OEM &amp; Private Label
             </p>
-            <h1 className="mt-4 text-4xl leading-[1.08] font-bold tracking-tight text-white sm:text-5xl">
+            <h1 className="mt-4 type-display text-white">
               OEM &amp; Private Label Solutions
             </h1>
-            <p className="mt-5 text-base leading-7 text-white/85 sm:text-lg">
+            <p className="mt-5 type-lead text-white/85">
               AZ Instruments welcomes business enquiries for customized surgical, dental,
               orthopedic, and orthodontic instruments. A requirement can start from a catalogue
               pattern or from your drawing, sample, or specification.
@@ -138,12 +138,12 @@ export function OemPageContent() {
       </section>
 
       <section className="bg-white">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
               OEM
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+            <h2 className="mt-3 type-section text-navy">
               OEM Manufacturing
             </h2>
             <p className="mt-5 text-base leading-7 text-navy/75">
@@ -158,7 +158,7 @@ export function OemPageContent() {
                 className="rounded-2xl border border-line bg-ice/40 p-7 transition duration-300 hover:-translate-y-0.5 hover:border-blue/30 hover:bg-white hover:shadow-[0_16px_40px_-28px_rgba(23,105,255,0.35)]"
               >
                 <PenIcon className="h-7 w-7 text-blue" />
-                <h3 className="mt-4 text-xl font-bold tracking-tight text-navy">{item.title}</h3>
+                <h3 className="mt-4 type-sub text-navy">{item.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-navy/75">{item.text}</p>
               </li>
             ))}
@@ -167,12 +167,12 @@ export function OemPageContent() {
       </section>
 
       <section className="border-y border-line bg-ice">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
               Private label
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+            <h2 className="mt-3 type-section text-navy">
               Private Label Opportunities
             </h2>
             <p className="mt-5 text-base leading-7 text-navy/75">
@@ -184,7 +184,7 @@ export function OemPageContent() {
           <ul className="mt-12 grid gap-6 sm:grid-cols-2">
             {privateLabelTopics.map((item) => (
               <li key={item.title} className="rounded-2xl border border-line bg-white p-7">
-                <h3 className="text-xl font-bold tracking-tight text-navy">{item.title}</h3>
+                <h3 className="type-sub text-navy">{item.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-navy/75">{item.text}</p>
               </li>
             ))}
@@ -193,12 +193,12 @@ export function OemPageContent() {
       </section>
 
       <section className="bg-white">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
               How an enquiry moves
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+            <h2 className="mt-3 type-section text-navy">
               Customization Process
             </h2>
             <p className="mt-5 text-base leading-7 text-navy/75">
@@ -219,13 +219,13 @@ export function OemPageContent() {
       </section>
 
       <section className="border-y border-line bg-ice">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
               <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
                 Catalogue
               </p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+              <h2 className="mt-3 type-section text-navy">
                 Product Categories
               </h2>
               <p className="mt-4 text-base leading-7 text-navy/75">
@@ -256,7 +256,7 @@ export function OemPageContent() {
                       />
                     </div>
                     <div className="flex flex-1 flex-col border-t border-line px-6 pt-5 pb-6">
-                      <h3 className="text-2xl font-bold tracking-tight text-navy">{category.title}</h3>
+                      <h3 className="type-sub text-navy">{category.title}</h3>
                       <p className="mt-3 text-sm leading-7 text-muted">{category.summary}</p>
                       <span className="mt-5 text-sm font-semibold text-blue">View products →</span>
                     </div>
@@ -269,12 +269,12 @@ export function OemPageContent() {
       </section>
 
       <section className="bg-[#042848]">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold tracking-[0.18em] text-white/70 uppercase sm:text-sm">
               Partnership
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="mt-3 type-section text-white">
               Why Partner With AZ Instruments
             </h2>
           </div>
@@ -282,7 +282,7 @@ export function OemPageContent() {
             {reasons.map((reason) => (
               <li key={reason.title} className="rounded-2xl border border-white/10 bg-white/5 p-7">
                 <HandshakeIcon className="h-7 w-7 text-blue" />
-                <h3 className="mt-4 text-xl font-bold tracking-tight text-white">{reason.title}</h3>
+                <h3 className="mt-4 type-sub text-white">{reason.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-white/75">{reason.text}</p>
               </li>
             ))}
@@ -291,12 +291,12 @@ export function OemPageContent() {
       </section>
 
       <section className="bg-white">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="overflow-hidden rounded-[1.75rem] bg-[#042848] px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
             <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-2xl">
                 <InspectIcon className="h-8 w-8 text-blue" />
-                <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                <h2 className="mt-4 type-section text-white">
                   Have a Custom Instrument Requirement?
                 </h2>
                 <p className="mt-4 text-base leading-7 text-white/75">

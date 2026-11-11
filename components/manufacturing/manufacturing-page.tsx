@@ -99,10 +99,10 @@ export function ManufacturingPageContent() {
             <p className="text-xs font-semibold tracking-[0.18em] text-white/80 uppercase sm:text-sm">
               Manufacturing
             </p>
-            <h1 className="mt-4 text-4xl leading-[1.08] font-bold tracking-tight text-white sm:text-5xl">
+            <h1 className="mt-4 type-display text-white">
               Precision, Craftsmanship &amp; Manufacturing
             </h1>
-            <p className="mt-5 text-base leading-7 text-white/85 sm:text-lg">
+            <p className="mt-5 type-lead text-white/85">
               AZ Instruments is based in Sialkot, Pakistan, and supplies dental, orthopedic, and
               orthodontic instruments. The work is centred on the detail of each pattern and on a
               finish that matches what the buyer has been shown.
@@ -133,12 +133,12 @@ export function ManufacturingPageContent() {
       </section>
 
       <section className="bg-white">
-        <Container className="grid items-start gap-10 py-16 sm:py-20 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:py-24">
+        <Container className="grid items-start gap-10 py-12 sm:py-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:py-20">
           <div>
             <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
               Manufacturing overview
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+            <h2 className="mt-3 type-section text-navy">
               How an instrument is prepared for a buyer
             </h2>
           </div>
@@ -161,12 +161,12 @@ export function ManufacturingPageContent() {
       </section>
 
       <section className="border-y border-line bg-ice">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
               Capabilities
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+            <h2 className="mt-3 type-section text-navy">
               Our Production Capabilities
             </h2>
             <p className="mt-5 text-base leading-7 text-navy/75">
@@ -182,7 +182,7 @@ export function ManufacturingPageContent() {
                 className="rounded-2xl border border-line bg-white p-7 transition duration-300 hover:-translate-y-0.5 hover:border-blue/30 hover:shadow-[0_16px_40px_-28px_rgba(23,105,255,0.35)]"
               >
                 <GearIcon className="h-7 w-7 text-blue" />
-                <h3 className="mt-4 text-xl font-bold tracking-tight text-navy">{item.title}</h3>
+                <h3 className="mt-4 type-sub text-navy">{item.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-navy/75">{item.text}</p>
               </li>
             ))}
@@ -191,13 +191,13 @@ export function ManufacturingPageContent() {
       </section>
 
       <section className="bg-white">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
               <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
                 Specialities
               </p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+              <h2 className="mt-3 type-section text-navy">
                 Three instrument groups
               </h2>
               <p className="mt-4 text-base leading-7 text-navy/75">
@@ -227,7 +227,7 @@ export function ManufacturingPageContent() {
                       />
                     </div>
                     <div className="flex flex-1 flex-col border-t border-line px-6 pt-5 pb-6">
-                      <h3 className="text-2xl font-bold tracking-tight text-navy">{category.title}</h3>
+                      <h3 className="type-sub text-navy">{category.title}</h3>
                       <p className="mt-3 text-sm leading-7 text-muted">{category.summary}</p>
                       <span className="mt-5 text-sm font-semibold text-blue">View products →</span>
                     </div>
@@ -240,12 +240,12 @@ export function ManufacturingPageContent() {
       </section>
 
       <section className="border-y border-line bg-[#042848]">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold tracking-[0.18em] text-white/70 uppercase sm:text-sm">
               Attention to detail
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="mt-3 type-section text-white">
               What is checked against the pattern
             </h2>
           </div>
@@ -253,7 +253,7 @@ export function ManufacturingPageContent() {
             {details.map((item) => (
               <li key={item.title} className="rounded-2xl border border-white/10 bg-white/5 p-7">
                 <InspectIcon className="h-7 w-7 text-blue" />
-                <h3 className="mt-4 text-xl font-bold tracking-tight text-white">{item.title}</h3>
+                <h3 className="mt-4 type-sub text-white">{item.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-white/75">{item.text}</p>
               </li>
             ))}
@@ -262,12 +262,12 @@ export function ManufacturingPageContent() {
       </section>
 
       <section className="bg-white">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold tracking-[0.18em] text-blue uppercase sm:text-sm">
               Supply
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+            <h2 className="mt-3 type-section text-navy">
               Manufacturing &amp; Supply Commitment
             </h2>
             <p className="mt-4 text-base leading-7 text-navy/75">
@@ -294,12 +294,12 @@ export function ManufacturingPageContent() {
       </section>
 
       <section className="border-t border-line bg-white">
-        <Container className="py-16 sm:py-20 lg:py-24">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <div className="overflow-hidden rounded-[1.75rem] bg-[#042848] px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
             <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-2xl">
                 <ShieldIcon className="h-8 w-8 text-blue" />
-                <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                <h2 className="mt-4 type-section text-white">
                   Let&apos;s Discuss Your Instrument Requirements
                 </h2>
                 <p className="mt-4 text-base leading-7 text-white/75">

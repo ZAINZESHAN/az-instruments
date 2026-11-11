@@ -122,7 +122,7 @@ export function ProductBrowser({
       <div className="sticky top-16 z-30 rounded-2xl border border-line bg-white/95 p-4 shadow-sm backdrop-blur-sm xl:top-[4.5rem]">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-navy sm:text-3xl">
+            <h2 className="type-section text-navy">
               Browse the catalogue
             </h2>
             <p className="mt-1 text-sm text-muted">
@@ -201,7 +201,7 @@ export function ProductBrowser({
                 <p className="text-xs font-semibold tracking-[0.16em] text-blue uppercase">
                   Category
                 </p>
-                <h2 className="mt-2 text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+                <h2 className="mt-2 type-section text-navy">
                   {item.title}
                 </h2>
                 <p className="mt-3 text-base leading-7 text-navy/70">{item.summary}</p>
