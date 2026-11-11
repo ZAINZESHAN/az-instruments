@@ -151,47 +151,34 @@ export function ContactInquiryForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="grid gap-4">
-      <div className="grid grid-cols-2 gap-3 sm:gap-4">
-        <Field label="Full name" tone="light" error={errors.fullName}>
-          <input name="fullName" autoComplete="name" placeholder="Your name" className={heroFieldClass} disabled={sending} />
-        </Field>
-        <Field label="Company name" tone="light" optional error={errors.company}>
-          <input name="company" autoComplete="organization" placeholder="Company name" className={heroFieldClass} disabled={sending} />
-        </Field>
-        <Field label="Business email" tone="light" error={errors.email}>
-          <input name="email" type="email" autoComplete="email" placeholder="Email" className={heroFieldClass} disabled={sending} />
-        </Field>
-        <Field label="Country" tone="light" error={errors.country}>
-          <input name="country" autoComplete="country-name" placeholder="Country" className={heroFieldClass} disabled={sending} />
-        </Field>
-        <Field label="Phone / WhatsApp" tone="light" optional error={errors.phone}>
-          <input name="phone" type="tel" autoComplete="tel" placeholder="+92 …" className={heroFieldClass} disabled={sending} />
-        </Field>
-        <Field label="Subject" tone="light" optional error={errors.subject}>
-          <input name="subject" placeholder="What is this about?" className={heroFieldClass} disabled={sending} />
-        </Field>
-      </div>
+    <form onSubmit={onSubmit} noValidate className="grid gap-3.5">
+      <Field label="Full name" tone="light" error={errors.fullName}>
+        <input name="fullName" autoComplete="name" placeholder="Your name" className={heroFieldClass} disabled={sending} />
+      </Field>
+      <Field label="Business email" tone="light" error={errors.email}>
+        <input name="email" type="email" autoComplete="email" placeholder="Email" className={heroFieldClass} disabled={sending} />
+      </Field>
+      <Field label="Country" tone="light" error={errors.country}>
+        <input name="country" autoComplete="country-name" placeholder="Country" className={heroFieldClass} disabled={sending} />
+      </Field>
       <Field label="Message" tone="light" error={errors.message}>
         <textarea
           name="message"
-          rows={4}
+          rows={3}
           placeholder="Product information, a quotation, or a business enquiry."
-          className={`${heroFieldClass} h-auto py-3`}
+          className={`${heroFieldClass} h-auto py-2.5`}
           disabled={sending}
         />
       </Field>
       <input name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
       <Notice status={status} fallbackMessage={fallback} />
-      <div>
-        <button
-          type="submit"
-          disabled={sending}
-          className="inline-flex h-12 items-center justify-center rounded-lg bg-blue px-6 text-sm font-semibold text-white transition-colors hover:bg-blue-deep disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          {sending ? "Sending…" : "Send message"}
-        </button>
-      </div>
+      <button
+        type="submit"
+        disabled={sending}
+        className="inline-flex h-10 w-full items-center justify-center rounded-lg bg-blue px-5 text-sm font-semibold text-white transition-colors hover:bg-blue-deep disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {sending ? "Sending…" : "Send message"}
+      </button>
     </form>
   );
 }
@@ -237,78 +224,58 @@ export function ProductInquiryForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="grid gap-4">
-      <div className="grid grid-cols-2 gap-3 sm:gap-4">
-        <Field label="Full name" error={errors.fullName}>
-          <input name="fullName" autoComplete="name" placeholder="Your name" className={fieldClass} disabled={sending} />
-        </Field>
-        <Field label="Company name" optional error={errors.company}>
-          <input name="company" autoComplete="organization" placeholder="Company name" className={fieldClass} disabled={sending} />
-        </Field>
-        <Field label="Business email" error={errors.email}>
-          <input name="email" type="email" autoComplete="email" placeholder="Email" className={fieldClass} disabled={sending} />
-        </Field>
-        <Field label="Country" error={errors.country}>
-          <input name="country" autoComplete="country-name" placeholder="Country" className={fieldClass} disabled={sending} />
-        </Field>
-        <Field label="Phone / WhatsApp" optional error={errors.phone}>
-          <input name="phone" type="tel" autoComplete="tel" placeholder="+92 …" className={fieldClass} disabled={sending} />
-        </Field>
-        <Field label="Enquiry type" error={errors.enquiryType}>
-          <select name="enquiryType" defaultValue="" className={fieldClass} disabled={sending}>
-            <option value="" disabled>
-              Select an enquiry type
+    <form onSubmit={onSubmit} noValidate className="grid gap-3.5">
+      <Field label="Full name" error={errors.fullName}>
+        <input name="fullName" autoComplete="name" placeholder="Your name" className={fieldClass} disabled={sending} />
+      </Field>
+      <Field label="Business email" error={errors.email}>
+        <input name="email" type="email" autoComplete="email" placeholder="Email" className={fieldClass} disabled={sending} />
+      </Field>
+      <Field label="Country" error={errors.country}>
+        <input name="country" autoComplete="country-name" placeholder="Country" className={fieldClass} disabled={sending} />
+      </Field>
+      <Field label="Enquiry type" error={errors.enquiryType}>
+        <select name="enquiryType" defaultValue="" className={fieldClass} disabled={sending}>
+          <option value="" disabled>
+            Select an enquiry type
+          </option>
+          {ENQUIRY_TYPES.map((type) => (
+            <option key={type} value={type}>
+              {type}
             </option>
-            {ENQUIRY_TYPES.map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-          </select>
-        </Field>
-        <Field label="Product category" error={errors.category}>
-          <select name="category" defaultValue="" className={fieldClass} disabled={sending}>
-            <option value="" disabled>
-              Select a category
+          ))}
+        </select>
+      </Field>
+      <Field label="Product category" error={errors.category}>
+        <select name="category" defaultValue="" className={fieldClass} disabled={sending}>
+          <option value="" disabled>
+            Select a category
+          </option>
+          {PRODUCT_CATEGORIES.map((category) => (
+            <option key={category} value={category}>
+              {category}
             </option>
-            {PRODUCT_CATEGORIES.map((category) => (
-              <option key={category} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
-        </Field>
-        <Field label="Product name" optional error={errors.productName}>
-          <input name="productName" placeholder="Pattern name, if you have one" className={fieldClass} disabled={sending} />
-        </Field>
-        <Field label="Estimated quantity" optional error={errors.quantity}>
-          <input name="quantity" placeholder="For example, 500" className={fieldClass} disabled={sending} />
-        </Field>
-      </div>
-      <Field label="Requirements / specifications" error={errors.message}>
+          ))}
+        </select>
+      </Field>
+      <Field label="Requirements" error={errors.message}>
         <textarea
           name="message"
-          rows={5}
-          placeholder="Describe the instrument, finish, or specification."
-          className={`${fieldClass} h-auto py-3`}
+          rows={4}
+          placeholder="Describe the instrument or specification."
+          className={`${fieldClass} h-auto py-2.5`}
           disabled={sending}
         />
       </Field>
-      <p className="text-sm leading-6 text-muted">
-        Drawings and reference files are not accepted on this form. There is no file store connected.
-        You can send a drawing on WhatsApp with the same enquiry.
-      </p>
       <input name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
       <Notice status={status} fallbackMessage={fallback} />
-      <div>
-        <button
-          type="submit"
-          disabled={sending}
-          className="inline-flex h-12 items-center justify-center rounded-lg bg-blue px-6 text-sm font-semibold text-white transition-colors hover:bg-blue-deep disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          {sending ? "Sending…" : "Send product enquiry"}
-        </button>
-      </div>
+      <button
+        type="submit"
+        disabled={sending}
+        className="inline-flex h-10 w-full items-center justify-center rounded-lg bg-blue px-5 text-sm font-semibold text-white transition-colors hover:bg-blue-deep disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {sending ? "Sending…" : "Send product enquiry"}
+      </button>
     </form>
   );
 }
