@@ -12,8 +12,8 @@ export function ContactPageContent() {
   return (
     <div className="bg-white">
       <section className="overflow-hidden bg-[#042848]">
-        <Container className="grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-2 lg:gap-16 lg:py-20">
-          <div>
+        <Container className="grid min-w-0 items-center gap-10 py-12 sm:py-16 lg:grid-cols-2 lg:gap-16 lg:py-20">
+          <div className="min-w-0">
             <p className="text-xs font-semibold tracking-[0.18em] text-white/80 uppercase sm:text-sm">
               Contact
             </p>
@@ -24,15 +24,21 @@ export function ContactPageContent() {
               International buyers, distributors, and healthcare instrument businesses can contact
               AZ Instruments for product information, quotations, and business enquiries.
             </p>
-            <a href={site.email.href} className="mt-6 inline-block text-sm font-semibold text-white hover:text-ice">
-              {site.email.display}
-            </a>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <ButtonLink href={site.whatsapp.href} variant="whatsapp" className="h-12 px-6">
-                <WhatsAppIcon className="h-4 w-4" />
-                WhatsApp {site.whatsapp.display}
+            <div className="mt-8 flex w-full min-w-0 flex-nowrap items-center justify-center gap-2">
+              <ButtonLink
+                href={site.whatsapp.href}
+                variant="whatsapp"
+                className="h-10 min-w-0 flex-1 px-2 text-[11px] whitespace-nowrap sm:h-12 sm:flex-none sm:px-6 sm:text-sm"
+              >
+                <WhatsAppIcon className="h-4 w-4 shrink-0" />
+                <span className="sm:hidden">WhatsApp</span>
+                <span className="hidden sm:inline">WhatsApp {site.whatsapp.display}</span>
               </ButtonLink>
-              <ButtonLink href="#product-enquiry" variant="outline" className="h-12 px-6">
+              <ButtonLink
+                href="#product-enquiry"
+                variant="outline"
+                className="h-10 min-w-0 flex-1 px-2 text-[11px] whitespace-nowrap sm:h-12 sm:flex-none sm:px-6 sm:text-sm"
+              >
                 Product enquiry
               </ButtonLink>
             </div>

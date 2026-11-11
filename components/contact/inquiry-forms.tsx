@@ -18,10 +18,10 @@ import {
 type Status = "idle" | "sending" | "success" | "error" | "unavailable";
 
 const fieldClass =
-  "h-10 w-full rounded-lg border border-line bg-white px-2.5 text-[13px] font-normal text-navy outline-none transition-colors placeholder:text-navy/35 focus:border-blue disabled:cursor-not-allowed disabled:opacity-60 sm:h-11 sm:px-3 sm:text-sm";
+  "h-9 w-full rounded-lg border border-line bg-white px-2 text-[12px] font-normal text-navy outline-none transition-colors placeholder:text-navy/35 focus:border-blue disabled:cursor-not-allowed disabled:opacity-60 sm:h-11 sm:px-3 sm:text-sm";
 
 const heroFieldClass =
-  "h-10 w-full rounded-xl border border-transparent bg-white px-2.5 text-[13px] font-normal text-navy shadow-sm outline-none transition-colors placeholder:text-navy/40 focus:ring-2 focus:ring-white/70 disabled:cursor-not-allowed disabled:opacity-60 sm:h-12 sm:px-3.5 sm:text-sm [&:-webkit-autofill]:[-webkit-text-fill-color:#172B4D] [&:-webkit-autofill]:[box-shadow:inset_0_0_0_1000px_#ffffff]";
+  "h-9 w-full rounded-xl border border-transparent bg-white px-2 text-[12px] font-normal text-navy shadow-sm outline-none transition-colors placeholder:text-navy/40 focus:ring-2 focus:ring-white/70 disabled:cursor-not-allowed disabled:opacity-60 sm:h-12 sm:px-3.5 sm:text-sm [&:-webkit-autofill]:[-webkit-text-fill-color:#172B4D] [&:-webkit-autofill]:[box-shadow:inset_0_0_0_1000px_#ffffff]";
 
 function Field({
   label,
@@ -37,7 +37,7 @@ function Field({
   tone?: "default" | "light";
 }) {
   return (
-    <label className={`grid gap-1.5 text-xs leading-4 font-semibold sm:gap-2 sm:text-sm sm:leading-5 ${tone === "light" ? "text-white" : "text-navy"}`}>
+    <label className={`grid justify-items-start gap-1 text-left text-[11px] leading-4 font-semibold sm:gap-2 sm:text-sm sm:leading-5 ${tone === "light" ? "text-white" : "text-navy"}`}>
       <span>
         {label}
         {optional ? (

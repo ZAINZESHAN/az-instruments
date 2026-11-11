@@ -30,13 +30,16 @@ export function WhyAz() {
               instruments for professional buyers seeking a dependable surgical
               instruments supplier from Sialkot.
             </p>
-            <ul className="mt-8 space-y-4">
+            <ul className="mt-8 space-y-3 text-left">
               {benefits.map((benefit) => {
                 const Icon = benefit.icon;
                 return (
-                  <li key={benefit.title} className="flex items-center gap-3">
-                    <Icon className="h-6 w-6 shrink-0 text-blue" />
-                    <span className="text-base font-semibold text-white">{benefit.title}</span>
+                  <li
+                    key={benefit.title}
+                    className="flex w-full items-center justify-start gap-3 text-left max-[599px]:justify-start!"
+                  >
+                    <Icon className="h-5 w-5 shrink-0 text-blue" />
+                    <span className="text-left text-sm font-semibold text-white">{benefit.title}</span>
                   </li>
                 );
               })}
