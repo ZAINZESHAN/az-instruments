@@ -319,60 +319,73 @@ export function validateQuoteInquiry(
   };
 }
 
-export function inquiryText(inquiry: InquiryPayload) {
+export type InquiryRow = {
+  label: string;
+  value: string;
+  long?: boolean;
+};
+
+function filled(label: string, value: string, long = false): InquiryRow[] {
+  const trimmed = value.trim();
+  return trimmed ? [{ label, value: trimmed, long }] : [];
+}
+
+export function inquiryContent(inquiry: InquiryPayload): { heading: string; rows: InquiryRow[] } {
   if (inquiry.kind === "contact") {
-    return [
-      "New website contact enquiry",
-      "",
-      `Name: ${inquiry.fullName}`,
-      `Company: ${inquiry.company || "Not provided"}`,
-      `Email: ${inquiry.email}`,
-      `Country: ${inquiry.country}`,
-      `Phone / WhatsApp: ${inquiry.phone || "Not provided"}`,
-      `Subject: ${inquiry.subject || "Not provided"}`,
-      "",
-      "Message:",
-      inquiry.message,
-    ].join("\n");
+    return {
+      heading: "New General Contact Submission",
+      rows: [
+        { label: "Full name", value: inquiry.fullName },
+        ...filled("Company", inquiry.company),
+        { label: "Business email", value: inquiry.email },
+        { label: "Country", value: inquiry.country },
+        ...filled("Phone / WhatsApp", inquiry.phone),
+        ...filled("Subject", inquiry.subject),
+        { label: "Message", value: inquiry.message, long: true },
+      ],
+    };
   }
 
   if (inquiry.kind === "product") {
-    return [
-      "New product enquiry",
-      "",
-      `Name: ${inquiry.fullName}`,
-      `Company: ${inquiry.company || "Not provided"}`,
-      `Email: ${inquiry.email}`,
-      `Country: ${inquiry.country}`,
-      `Phone / WhatsApp: ${inquiry.phone || "Not provided"}`,
-      `Enquiry type: ${inquiry.enquiryType}`,
-      `Product category: ${inquiry.category}`,
-      `Product name: ${inquiry.productName || "Not provided"}`,
-      `Estimated quantity: ${inquiry.quantity || "Not provided"}`,
-      "",
-      "Requirements:",
-      inquiry.message,
-    ].join("\n");
+    return {
+      heading: "New Product Enquiry",
+      rows: [
+        { label: "Full name", value: inquiry.fullName },
+        ...filled("Company", inquiry.company),
+        { label: "Business email", value: inquiry.email },
+        { label: "Country", value: inquiry.country },
+        ...filled("Phone / WhatsApp", inquiry.phone),
+        { label: "Enquiry type", value: inquiry.enquiryType },
+        { label: "Product category", value: inquiry.category },
+        ...filled("Product name", inquiry.productName),
+        ...filled("Estimated quantity", inquiry.quantity),
+        { label: "Requirements", value: inquiry.message, long: true },
+      ],
+    };
   }
 
-  return [
-    "New quotation request",
-    "",
-    `Name: ${inquiry.fullName}`,
-    `Company: ${inquiry.company}`,
-    `Email: ${inquiry.email}`,
-    `Country: ${inquiry.country}`,
-    `WhatsApp / Phone: ${inquiry.phone}`,
-    `Product category: ${inquiry.category}`,
-    `Product / instrument list: ${inquiry.productName}`,
-    `Required quantity: ${inquiry.quantity}`,
-    `Target price: ${inquiry.targetPrice || "Not provided"}`,
-    `Reference file: ${inquiry.referenceFileName || "Not provided"}`,
-    "",
-    "Customization / specifications:",
-    inquiry.specifications,
-    "",
-    "Additional message:",
-    inquiry.message || "Not provided",
-  ].join("\n");
+  return {
+    heading: "New Request for Quote (RFQ)",
+    rows: [
+      { label: "Full name", value: inquiry.fullName },
+      { label: "Company", value: inquiry.company },
+      { label: "Business email", value: inquiry.email },
+      { label: "Country", value: inquiry.country },
+      { label: "WhatsApp / Phone", value: inquiry.phone },
+      { label: "Product category", value: inquiry.category },
+      { label: "Product / instrument list", value: inquiry.productName, long: true },
+      { label: "Required quantity", value: inquiry.quantity },
+      ...filled("Target price", inquiry.targetPrice),
+      ...filled("Reference file", inquiry.referenceFileName),
+      { label: "Customization / specifications", value: inquiry.specifications, long: true },
+      ...filled("Additional message", inquiry.message, true),
+    ],
+  };
+}
+
+export function inquiryText(inquiry: InquiryPayload) {
+  const content = inquiryContent(inquiry);
+  return [content.heading, "", ...content.rows.flatMap((row) => [row.label, row.value, ""])]
+    .join("\n")
+    .trim();
 }

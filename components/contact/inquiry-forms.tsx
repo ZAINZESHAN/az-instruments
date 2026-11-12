@@ -1,9 +1,10 @@
 "use client";
 
-import { FormEvent, useState, type ReactNode } from "react";
+import { FormEvent, useEffect, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { useSearchParams } from "next/navigation";
 import { ButtonLink } from "@/components/ui/button-link";
-import { WhatsAppIcon } from "@/components/ui/icons";
+import { CloseIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { whatsappHref } from "@/lib/inquiry";
 import { site } from "@/lib/site";
 import {
@@ -56,6 +57,45 @@ function Field({
   );
 }
 
+function SuccessToast({ message }: { message: string }) {
+  const [open, setOpen] = useState(true);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setOpen(false), 5200);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  if (!open) return null;
+
+  return createPortal(
+    <div className="pointer-events-none fixed inset-x-0 bottom-5 z-[80] flex justify-center px-4 sm:bottom-8">
+      <div
+        className="pointer-events-auto flex w-full max-w-md items-start gap-3 rounded-2xl border border-teal/25 bg-white px-4 py-3.5 text-left shadow-[0_18px_50px_-24px_rgba(23,43,77,0.55)] motion-safe:animate-[toast-in_280ms_ease-out]"
+        role="status"
+      >
+        <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-teal text-white">
+          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
+            <path d="M5 12.5 9.2 17 19 7" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-sm font-bold text-navy">Sent successfully</span>
+          <span className="mt-0.5 block text-sm leading-5 text-navy/75">{message}</span>
+        </span>
+        <button
+          type="button"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-navy/50 transition-colors hover:bg-ice hover:text-navy"
+          aria-label="Dismiss"
+          onClick={() => setOpen(false)}
+        >
+          <CloseIcon className="h-4 w-4" />
+        </button>
+      </div>
+    </div>,
+    document.body,
+  );
+}
+
 function Notice({
   status,
   fallbackMessage,
@@ -70,11 +110,7 @@ function Notice({
   const fileNote = attachmentPending ? " The reference file was not delivered." : "";
 
   if (status === "success") {
-    return (
-      <p className="rounded-xl border border-teal/30 bg-teal/10 px-4 py-3 text-left text-sm leading-6 text-navy" role="status">
-        {successText}
-      </p>
-    );
+    return <SuccessToast message={successText} />;
   }
 
   if (status === "unavailable") {
