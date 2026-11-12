@@ -1,4 +1,5 @@
 import { inquiryText, type InquiryPayload } from "@/lib/inquiries";
+import { site } from "@/lib/site";
 
 export type MailAttachment = {
   filename: string;
@@ -27,13 +28,22 @@ function escapeHtml(value: string) {
     .replace(/'/g, "&#39;");
 }
 
+const SUBJECTS = {
+  contact: "New General Contact Submission",
+  product: "New Product Enquiry",
+  quote: "New Request for Quote (RFQ)",
+} as const;
+
+function senderAddress(email: string) {
+  if (email.includes("<")) return email;
+  return `${site.name} <${email}>`;
+}
+
 /**
  * Sends only when Resend is configured.
- * Required: RESEND_API_KEY and CONTACT_FROM_EMAIL.
- * Contact and product enquiries default to the company inbox.
- * Quote requests default to the quotation inbox.
- * CONTACT_RECEIVER_EMAIL and QUOTE_RECEIVER_EMAIL can override those defaults.
- * A quote file is attached to the same email and is never dropped on a successful send.
+ * Required server env: RESEND_API_KEY, FROM_EMAIL, and CONTACT_EMAIL.
+ * Every form is delivered to CONTACT_EMAIL. A quote file is attached to that
+ * same email and is never dropped on a successful send.
  */
 export async function sendInquiryEmail(
   inquiry: InquiryPayload,
@@ -45,31 +55,23 @@ export async function sendInquiryEmail(
   }
 
   const apiKey = envValue("RESEND_API_KEY");
-  const fromEmail = envValue("CONTACT_FROM_EMAIL");
-  const toEmail =
-    inquiry.kind === "quote"
-      ? envValue("QUOTE_RECEIVER_EMAIL") || "azinstruments.global@gmail.com"
-      : envValue("CONTACT_RECEIVER_EMAIL") || "azinstruments.official@gmail.com";
+  const fromEmail = envValue("FROM_EMAIL");
+  const toEmail = envValue("CONTACT_EMAIL");
 
   if (!apiKey || !fromEmail?.includes("@") || !toEmail?.includes("@")) {
     return { ok: false, code: "not_configured" };
   }
 
   const text = inquiryText(inquiry);
-  const subject =
-    inquiry.kind === "contact"
-      ? `Contact enquiry — ${inquiry.fullName}`
-      : inquiry.kind === "product"
-        ? `Product enquiry — ${inquiry.fullName}`
-        : `Quote request — ${inquiry.company}`;
+  const subject = SUBJECTS[inquiry.kind];
 
   const payload: Record<string, unknown> = {
-    from: fromEmail,
+    from: senderAddress(fromEmail),
     to: [toEmail],
     reply_to: inquiry.email,
     subject,
     text,
-    html: `<pre>${escapeHtml(text)}</pre>`,
+    html: `<div style="font-family:sans-serif;font-size:15px;line-height:1.6;color:#172B4D">${escapeHtml(text).replace(/\n/g, "<br>")}</div>`,
   };
 
   if (attachment) {
@@ -92,12 +94,9 @@ export async function sendInquiryEmail(
       body: JSON.stringify(payload),
     });
 
-    if (!response.ok) {
-      return { ok: false, code: "delivery_failed" };
-    }
-
-    const body = (await response.json().catch(() => null)) as { id?: string } | null;
-    if (!body?.id) {
+    const body = (await response.json().catch(() => null)) as { id?: string; message?: string; name?: string } | null;
+    if (!response.ok || !body?.id) {
+      console.error("Resend delivery failed", response.status, body?.name || body?.message || "");
       return { ok: false, code: "delivery_failed" };
     }
 
