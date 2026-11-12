@@ -68,9 +68,9 @@ function SuccessToast({ message }: { message: string }) {
   if (!open) return null;
 
   return createPortal(
-    <div className="pointer-events-none fixed inset-x-0 bottom-5 z-[80] flex justify-center px-4 sm:bottom-8">
+    <div className="pointer-events-none fixed top-20 right-4 z-[80] w-[min(24rem,calc(100%-2rem))] sm:top-[5.25rem] sm:right-6 xl:top-[5.75rem]">
       <div
-        className="pointer-events-auto flex w-full max-w-md items-start gap-3 rounded-2xl border border-teal/25 bg-white px-4 py-3.5 text-left shadow-[0_18px_50px_-24px_rgba(23,43,77,0.55)] motion-safe:animate-[toast-in_280ms_ease-out]"
+        className="pointer-events-auto flex w-full items-start gap-3 rounded-2xl border border-teal/25 bg-white px-4 py-3.5 text-left shadow-[0_18px_50px_-24px_rgba(23,43,77,0.55)] motion-safe:animate-[toast-in_280ms_ease-out]"
         role="status"
       >
         <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-teal text-white">
